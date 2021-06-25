@@ -59,14 +59,14 @@
         <field name="name">dmpi.sundry.po.allocation.form</field>
         <field name="model">dmpi.sundry.po.allocation</field>
         <field name="arch" type="xml">
-            <header>
-                <button id="button_confirm" name="action_confirm" string="Confirm" class="btn-primary" type="object" states="draft"/>
-                <button id="button_done" name="action_done" string="Mark as Done" class="btn-primary" type="object" states="in_progress"/>
-                <button id="button_draft" name="action_draft" string="Set to Draft" class="btn-primary" type="object" states="cancelled"/>
-                <button id="button_cancel" name="action_cancel" string="Cancel" type="object" states="draft,in_progress,done"/>
-                <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done"/>
-            </header>
             <form string="Po Allocation">
+                <header>
+                    <button id="button_confirm" name="action_confirm" string="Confirm" class="btn-primary" type="object" states="draft"/>
+                    <button id="button_done" name="action_done" string="Mark as Done" class="btn-primary" type="object" states="in_progress"/>
+                    <button id="button_draft" name="action_draft" string="Set to Draft" class="btn-primary" type="object" states="cancelled"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" type="object" states="draft,in_progress,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done"/>
+                </header>
                 <group>
                     <field name="name"/>
                     <field name="valid_from"/>
