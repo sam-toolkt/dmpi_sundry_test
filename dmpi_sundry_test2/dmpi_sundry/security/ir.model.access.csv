@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sundry_po_product,sundry_po_product,model_sundry_po_product,base.group_user,1,1,1,1
+access_dmpi_sundry_po_allocation,dmpi_sundry_po_allocation,model_dmpi_sundry_po_allocation,base.group_user,1,1,1,1
+access_dmpi_sundry_po_allocation_line,dmpi_sundry_po_allocation_line,model_dmpi_sundry_po_allocation_line,base.group_user,1,1,1,1

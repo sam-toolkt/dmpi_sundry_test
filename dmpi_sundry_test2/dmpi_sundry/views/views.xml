@@ -1,0 +1,142 @@
+<odoo>
+  <data>
+
+<!-- Sundry Product -->
+    <record id="view_sundry_po_product_tree" model="ir.ui.view">
+        <field name="name">sundry.po.product.tree</field>
+        <field name="model">sundry.po.product</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Products" editable="bottom">
+                <field name="id" groups="base.group_erp_manager"/>
+                <field name="item_code"/>
+                <field name="name"/>
+                <field name="uom"/>
+                <field name="cas"/>
+                <field name="pcs"/>
+                <field name="bal_cas"/>
+                <field name="bal_pcs"/>
+                <field name="hot_qty"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_sundry_po_product_form" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sundry.po.product</field>
+    </record>
+
+    <!-- PO Allocation --> 
+    <record id="dmpi_sundry_po_allocation_action" model="ir.actions.act_window">
+        <field name="name">Allocation</field>
+        <field name="res_model">dmpi.sundry.po.allocation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new Record.
+          </p><p>
+            PO Allocation
+          </p>
+        </field>
+    </record>
+
+    <record id="dmpi_sundry_po_allocation_tree" model="ir.ui.view">
+        <field name="name">dmpi.sundry.po.allocation.tree</field>
+        <field name="model">dmpi.sundry.po.allocation</field>
+        <field name="arch" type="xml">
+            <tree string="Po Allocation">
+                <field name="name"/>
+                <field name="valid_from"/>
+                <field name="valid_to"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dmpi_sundry_po_allocation_form" model="ir.ui.view">
+        <field name="name">dmpi.sundry.po.allocation.form</field>
+        <field name="model">dmpi.sundry.po.allocation</field>
+        <field name="arch" type="xml">
+            <header>
+                <button id="button_confirm" name="action_confirm" string="Confirm" class="btn-primary" type="object" states="draft"/>
+                <button id="button_done" name="action_done" string="Mark as Done" class="btn-primary" type="object" states="in_progress"/>
+                <button id="button_draft" name="action_draft" string="Set to Draft" class="btn-primary" type="object" states="cancelled"/>
+                <button id="button_cancel" name="action_cancel" string="Cancel" type="object" states="draft,in_progress,done"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done"/>
+            </header>
+            <form string="Po Allocation">
+                <group>
+                    <field name="name"/>
+                    <field name="valid_from"/>
+                    <field name="valid_to"/>
+                    <field name="active"/>
+                </group>
+                <field name="allocation_line_ids">
+                    <tree editable='bottom' limit="500">
+                        <field name="product_code"/>
+                        <field name="product_id"/>
+                        <field name="product_uom"/>
+                        <field name="product_cas"/>
+                        <field name="product_pcs"/>
+                        <field name="product_bal_cas"/>
+                        <field name="product_bal_pcs"/>
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+
+<!-- PO Allocation Line--> 
+    <record id="dmpi_sundry_po_allocation_line_action" model="ir.actions.act_window">
+        <field name="name">Allocation Line</field>
+        <field name="res_model">dmpi.sundry.po.allocation.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new Record.
+          </p><p>
+            PO Allocation
+          </p>
+        </field>
+    </record>
+
+    <record id="dmpi_sundry_po_allocation_line_tree" model="ir.ui.view">
+        <field name="name">dmpi.sundry.po.allocation.line.tree</field>
+        <field name="model">dmpi.sundry.po.allocation.line</field>
+        <field name="arch" type="xml">
+            <tree string="Po Allocation" editable='bottom'>
+                <field name="product_code"/>
+                <field name="product_id"/>
+                <field name="product_uom"/>
+                <field name="product_cas"/>
+                <field name="product_pcs"/>
+                <field name="product_bal_cas"/>
+                <field name="product_bal_pcs"/>
+                <field name="allocation_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Top menu item -->
+    <menuitem name="DMPI Sundry Purchase" id="sundry_menu_root" />
+    <!-- Sub Menu -->
+    <menuitem id="sundry_menu_1" parent="sundry_menu_root" name="Allocation"/>
+    <!-- Sub Menu Items -->
+    <menuitem name="Produts" id="dmpi_sundry_menu_1_list" parent="sundry_menu_1" action="action_sundry_po_product_form"/>
+    <menuitem name="Sundry Allocation" id="dmpi_sundry_menu_2_list" parent="sundry_menu_1" action="dmpi_sundry_po_allocation_action"/>
+    <menuitem name="Sundry Allocation Line" id="dmpi_sundry_menu_3_list" parent="sundry_menu_1" action="dmpi_sundry_po_allocation_line_action"/>
+  </data>
+</odoo>
+
+
+
+
+
+
+
+
+
